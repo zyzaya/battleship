@@ -11,11 +11,10 @@ export default function Ship(length) {
   };
 
   let setOrigin = (newX, newY) => {
-    if (!Number.isInteger(newX)) {
-      throw new TypeError('x must be an integer');
-    } else if (!Number.isInteger(newY)) {
+    if (!Number.isInteger(newX)) throw new TypeError('x must be an integer');
+    else if (!Number.isInteger(newY))
       throw new TypeError('y must be an integer');
-    }
+
     x = newX;
     y = newY;
   };
@@ -36,6 +35,11 @@ export default function Ship(length) {
   };
 
   let hit = (targetX, targetY) => {
+    if (!Number.isInteger(targetX))
+      throw new TypeError('targetX must be an integer');
+    else if (!Number.isInteger(targetY))
+      throw new TypeError('targetY must be an integer');
+
     if (horizontal)
       return y === targetY && targetX >= x && targetX < x + length;
     else return x === targetX && targetY >= y && targetY < y + length;

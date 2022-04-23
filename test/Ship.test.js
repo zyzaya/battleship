@@ -60,3 +60,8 @@ it('can be missed', () => {
   ship.setOrigin(3, -5);
   expect(ship.hit(3, 8)).toBe(false);
 });
+
+it('only accepts integer values as hit coordinates', () => {
+  let ship = Ship(5);
+  expect(() => ship.hit('5, 6')).toThrowError();
+});
