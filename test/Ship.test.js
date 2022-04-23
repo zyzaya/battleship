@@ -8,3 +8,9 @@ it('sets a length in a construction', () => {
 it('cannot have a negative length', () => {
   expect(() => Ship(-5)).toThrowError();
 });
+
+it('has an origin', () => {
+  let ship = Ship(5);
+  expect(ship.getOrigin().x).toBeDefined();
+  expect(ship.getOrigin().y).toBeDefined();
+});
