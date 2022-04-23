@@ -14,3 +14,10 @@ it('has an origin', () => {
   expect(ship.getOrigin().x).toBeDefined();
   expect(ship.getOrigin().y).toBeDefined();
 });
+
+it('can set the origin', () => {
+  let ship = Ship(5);
+  ship.setOrigin(6, 8);
+  expect(ship.getOrigin().x).toBe(6);
+  expect(ship.getOrigin().y).toBe(8);
+});

@@ -9,6 +9,11 @@ export default function Ship(length) {
     return length;
   };
 
+  let setOrigin = (newX, newY) => {
+    x = newX;
+    y = newY;
+  };
+
   let getOrigin = () => {
     return {
       x,
@@ -19,5 +24,6 @@ export default function Ship(length) {
   return {
     getLength,
     getOrigin,
+    setOrigin,
   };
 }
