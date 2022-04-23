@@ -49,3 +49,9 @@ it('can be hit when vertical', () => {
   ship.setHorizontal(false);
   expect(ship.hit(-7, 12)).toBe(true);
 });
+
+it('can be missed', () => {
+  let ship = Ship(5);
+  ship.setOrigin('3, -5');
+  expect(ship.hit(3, 8)).toBe(false);
+});
