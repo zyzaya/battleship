@@ -15,6 +15,11 @@ it('has an origin', () => {
   expect(ship.getOrigin().y).toBeDefined();
 });
 
+it('only accepts integer values as an origin', () => {
+  let ship = Ship(5);
+  expect(() => ship.setOrigin('x, y')).toThrowError();
+});
+
 it('can set the origin', () => {
   let ship = Ship(5);
   ship.setOrigin(6, 8);
@@ -52,6 +57,6 @@ it('can be hit when vertical', () => {
 
 it('can be missed', () => {
   let ship = Ship(5);
-  ship.setOrigin('3, -5');
+  ship.setOrigin(3, -5);
   expect(ship.hit(3, 8)).toBe(false);
 });

@@ -11,6 +11,11 @@ export default function Ship(length) {
   };
 
   let setOrigin = (newX, newY) => {
+    if (!Number.isInteger(newX)) {
+      throw new TypeError('x must be an integer');
+    } else if (!Number.isInteger(newY)) {
+      throw new TypeError('y must be an integer');
+    }
     x = newX;
     y = newY;
   };
