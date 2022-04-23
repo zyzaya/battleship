@@ -5,8 +5,9 @@ it('sets a length in a construction', () => {
   expect(ship.getLength()).toBe(5);
 });
 
-it('cannot have a negative length', () => {
+it('must have a postive integer as a length', () => {
   expect(() => Ship(-5)).toThrowError();
+  expect(() => Ship('length')).toThrowError();
 });
 
 it('has an origin', () => {
