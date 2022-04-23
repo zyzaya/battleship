@@ -32,3 +32,20 @@ it('can set the orientation', () => {
   ship.setHorizontal(false);
   expect(ship.isHorizontal()).toBe(false);
 });
+
+it('can be hit when horizontal', () => {
+  let ship = Ship(5);
+  // 3 4 5 6 7
+  ship.setOrigin(3, -5);
+  expect(ship.hit(5, -5)).toBe(true);
+});
+
+it('can be hit when vertical', () => {
+  let ship = Ship(3);
+  // 10
+  // 11
+  // 12
+  ship.setOrigin(-7, 10);
+  ship.setHorizontal(false);
+  expect(ship.hit(-7, 12)).toBe(true);
+});

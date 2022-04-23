@@ -30,11 +30,18 @@ export default function Ship(length) {
     horizontal = value;
   };
 
+  let hit = (targetX, targetY) => {
+    if (horizontal)
+      return y === targetY && targetX >= x && targetX < x + length;
+    else return x === targetX && targetY >= y && targetY < y + length;
+  };
+
   return {
     getLength,
     getOrigin,
     setOrigin,
     isHorizontal,
     setHorizontal,
+    hit,
   };
 }
