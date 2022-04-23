@@ -31,7 +31,7 @@ export default function Ship(length) {
   };
 
   let setHorizontal = (value) => {
-    horizontal = value;
+    horizontal = !!value;
   };
 
   let hit = (targetX, targetY) => {
