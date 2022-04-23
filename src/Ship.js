@@ -4,6 +4,7 @@ export default function Ship(length) {
   }
   let x = 0;
   let y = 0;
+  let horizontal = true;
 
   let getLength = () => {
     return length;
@@ -21,9 +22,19 @@ export default function Ship(length) {
     };
   };
 
+  let isHorizontal = () => {
+    return horizontal;
+  };
+
+  let setHorizontal = (value) => {
+    horizontal = value;
+  };
+
   return {
     getLength,
     getOrigin,
     setOrigin,
+    isHorizontal,
+    setHorizontal,
   };
 }

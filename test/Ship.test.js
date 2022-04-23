@@ -21,3 +21,14 @@ it('can set the origin', () => {
   expect(ship.getOrigin().x).toBe(6);
   expect(ship.getOrigin().y).toBe(8);
 });
+
+it('has an orientation', () => {
+  let ship = Ship(5);
+  expect(ship.isHorizontal()).toBeDefined();
+});
+
+it('can set the orientation', () => {
+  let ship = Ship(5);
+  ship.setHorizontal(false);
+  expect(ship.isHorizontal()).toBe(false);
+});
