@@ -89,3 +89,16 @@ it('can be sunk when vertical', () => {
   ship.hit(-1, 9);
   expect(ship.isSunk()).toBe(true);
 });
+
+it('can clear hits', () => {
+  let ship = Ship(3);
+  ship.setOrigin(3, -5);
+  ship.setHorizontal(true);
+  expect(ship.isSunk()).toBe(false);
+  ship.hit(3, -5);
+  ship.hit(4, -5);
+  ship.hit(5, -5);
+  expect(ship.isSunk()).toBe(true);
+  ship.resetHits();
+  expect(ship.isSunk()).toBe(false);
+});

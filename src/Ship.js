@@ -57,6 +57,7 @@ export default function Ship(length) {
     });
   };
 
+  let resetHits = () => (hits.length = 0);
   return {
     getLength,
     getOrigin,
@@ -65,5 +66,6 @@ export default function Ship(length) {
     setHorizontal,
     hit,
     isSunk,
+    resetHits,
   };
 }
