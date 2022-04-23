@@ -6,6 +6,7 @@ export default function Ship(length) {
   let x = 0;
   let y = 0;
   let horizontal = true;
+  let hits = [];
 
   let getLength = () => {
     return length;
@@ -41,9 +42,19 @@ export default function Ship(length) {
     else if (!Number.isInteger(targetY))
       throw new TypeError('targetY must be an integer');
 
-    if (horizontal)
-      return y === targetY && targetX >= x && targetX < x + length;
-    else return x === targetX && targetY >= y && targetY < y + length;
+    let success =
+      (horizontal && y === targetY && targetX >= x && targetX < x + length) ||
+      (!horizontal && x === targetX && targetY >= y && targetY < y + length);
+    if (success) hits.push({ x: targetX, y: targetY });
+    return success;
+  };
+
+  let isSunk = () => {
+    if (hits.length === 0) return false;
+    return hits.every((v) => {
+      if (horizontal) return v.y === y && v.x >= x && v.x < x + length;
+      else return v.x === x && v.y >= y && v.y < y + length;
+    });
   };
 
   return {
@@ -53,5 +64,6 @@ export default function Ship(length) {
     isHorizontal,
     setHorizontal,
     hit,
+    isSunk,
   };
 }

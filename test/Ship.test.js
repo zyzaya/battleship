@@ -66,3 +66,26 @@ it('only accepts integer values as hit coordinates', () => {
   let ship = Ship(5);
   expect(() => ship.hit('5, 6')).toThrowError();
 });
+
+it('can be sunk when horizontal', () => {
+  let ship = Ship(3);
+  ship.setOrigin(3, -5);
+  ship.setHorizontal(true);
+  expect(ship.isSunk()).toBe(false);
+  ship.hit(3, -5);
+  ship.hit(4, -5);
+  ship.hit(5, -5);
+  expect(ship.isSunk()).toBe(true);
+});
+
+it('can be sunk when vertical', () => {
+  let ship = Ship(4);
+  ship.setOrigin(-1, 6);
+  ship.setHorizontal(false);
+  expect(ship.isSunk()).toBe(false);
+  ship.hit(-1, 6);
+  ship.hit(-1, 7);
+  ship.hit(-1, 8);
+  ship.hit(-1, 9);
+  expect(ship.isSunk()).toBe(true);
+});
