@@ -21,3 +21,8 @@ it('does not allow an invalid ship name', () => {
   let board = Board(10);
   expect(() => board.placeShip('notaship', 2, 2, false)).toThrowError();
 });
+
+it('cannot his a ship that has not been placed', () => {
+  let board = Board(10);
+  expect(board.isHit(0, 0)).toBe(false);
+});

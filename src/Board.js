@@ -18,6 +18,7 @@ export default function Board(size) {
     Submarine: Ship(2),
     PatrolBoat: Ship(2),
   };
+  let placedShips = [];
 
   let placeShip = function (name, x, y, horizontal) {
     if (ships[name] === undefined)
@@ -32,12 +33,15 @@ export default function Board(size) {
       throw new RangeError(
         `y must be less than the size of the board (${size})`
       );
-
     ships[name].setOrigin(x, y);
     ships[name].setHorizontal(horizontal);
+    if (!placedShips.includes(name)) placedShips.push(name);
   };
+
   let isHit = function (x, y) {
-    for (const name in ships) if (ships[name].hit(x, y)) return name;
+    for (const name in ships) {
+      if (placedShips.includes(name) && ships[name].hit(x, y)) return name;
+    }
     return false;
   };
 
