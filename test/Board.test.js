@@ -26,3 +26,9 @@ it('cannot his a ship that has not been placed', () => {
   let board = Board(10);
   expect(board.isHit(0, 0)).toBe(false);
 });
+
+it('can miss a placed ship', () => {
+  let board = Board(10);
+  board.placeShip(board.Carrier, 1, 2, true);
+  expect(board.isHit(0, 2)).toBe(false);
+});
