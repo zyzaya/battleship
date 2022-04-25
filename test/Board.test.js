@@ -38,3 +38,11 @@ it('cannot place a ship on the location of another ship', () => {
   board.placeShip(board.Carrier, 3, 2, true);
   expect(board.placeShip(board.Destroyer, 4, 0, false)).toBe(false);
 });
+
+it('can remove a ship', () => {
+  let board = Board(10);
+  board.placeShip(board.PatrolBoat, 8, 8, true);
+  expect(board.isHit(9, 8)).not.toBe(true);
+  board.removeShip(board.PatrolBoat);
+  expect(board.isHit(9, 8)).toBe(false);
+});

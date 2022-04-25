@@ -39,11 +39,11 @@ export default function Board(size) {
       throw new Error('Error: name must be a valid ship name');
     if (x < 0) throw new RangeError('x must be greater than or equal to zero');
     if (y < 0) throw new RangeError('y must be greater than or equal to zero');
-    if (ships[name].isHorizontal() && x + ships[name].getLength() >= size)
+    if (ships[name].isHorizontal() && x + ships[name].getLength() - 1 >= size)
       throw new RangeError(
         `x must be less than the size of the board (${size})`
       );
-    if (!ships[name].isHorizontal() && y + ships[name].getLength() >= size)
+    if (!ships[name].isHorizontal() && y + ships[name].getLength() - 1 >= size)
       throw new RangeError(
         `y must be less than the size of the board (${size})`
       );
@@ -52,6 +52,13 @@ export default function Board(size) {
     ships[name].setHorizontal(horizontal);
     if (!placedShips.includes(name)) placedShips.push(name);
     return true;
+  };
+
+  let removeShip = function (name) {
+    if (ships[name] === undefined)
+      throw new Error('Error: name must be a valid ship name');
+    placedShips = placedShips.filter((v) => v !== name);
+    ships[name].resetHits();
   };
 
   let isHit = function (x, y) {
@@ -68,6 +75,7 @@ export default function Board(size) {
     Submarine: 'Submarine',
     PatrolBoat: 'PatrolBoat',
     placeShip,
+    removeShip,
     isHit,
   };
 }
