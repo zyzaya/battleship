@@ -1,16 +1,6 @@
 import Ship from './Ship';
 
 export default function Board(size) {
-  // place ship(shipname, x, y)
-  // remove ship
-  // isHit(x, y)
-  /* 
-    carrier: 5
-    battleship: 4
-    destroyer: 3
-    submarine: 3
-    patrol boat: 2
-  */
   let ships = {
     Carrier: Ship(5),
     Battleship: Ship(4),
@@ -23,9 +13,6 @@ export default function Board(size) {
   let isValidShipPlacement = function (name, x, y, horizontal) {
     if (ships[name] === undefined)
       throw new Error('Error: name must be a valid ship name');
-    // for every ship that isn't name and is placed
-    // check if the new placement will overlap
-
     let left = x;
     let top = y;
     let right = horizontal ? left + ships[name].getLength() - 1 : left;
