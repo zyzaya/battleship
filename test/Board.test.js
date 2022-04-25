@@ -16,3 +16,8 @@ it('does not allow a ship to be placed off of the board', () => {
   let board = Board(10);
   expect(() => board.placeShip(board.Carrier, 7, 2, true)).toThrowError();
 });
+
+it('does not allow an invalid ship name', () => {
+  let board = Board(10);
+  expect(() => board.placeShip('notaship', 2, 2, false)).toThrowError();
+});
