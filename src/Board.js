@@ -22,8 +22,8 @@ export default function Board(size) {
   let placeShip = function (name, x, y, horizontal) {
     if (ships[name] === undefined)
       throw new Error('Error: name must be a valid ship name');
-    if (x < 0) throw new RangeError('x must be greater than zero');
-    if (y < 0) throw new RangeError('y must be greater than zero');
+    if (x < 0) throw new RangeError('x must be greater than or equal to zero');
+    if (y < 0) throw new RangeError('y must be greater than or equal to zero');
     if (ships[name].isHorizontal() && x + ships[name].getLength() >= size)
       throw new RangeError(
         `x must be less than the size of the board (${size})`
