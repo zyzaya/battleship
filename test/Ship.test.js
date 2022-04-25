@@ -1,4 +1,4 @@
-import Ship from './../src/Ship.js';
+import Ship from './../src/Ship';
 
 it('sets a length in a construction', () => {
   let ship = Ship(5);
