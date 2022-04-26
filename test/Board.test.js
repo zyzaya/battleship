@@ -3,13 +3,13 @@ import Board from './../src/Board';
 it('places a ship horizontally', () => {
   let board = Board(10);
   board.placeShip(board.Carrier, 1, 1, true);
-  expect(board.isHit(1, 1)).toBe(board.Carrier);
+  expect(board.hit(1, 1)).toBe(board.Carrier);
 });
 
 it('places a ship vertically', () => {
   let board = Board(10);
   board.placeShip(board.Carrier, 1, 1, false);
-  expect(board.isHit(1, 2)).toBe(board.Carrier);
+  expect(board.hit(1, 2)).toBe(board.Carrier);
 });
 
 it('does not allow a ship to be placed off of the board', () => {
@@ -28,13 +28,13 @@ it('does not allow an invalid ship name', () => {
 
 it('cannot his a ship that has not been placed', () => {
   let board = Board(10);
-  expect(board.isHit(0, 0)).toBe(false);
+  expect(board.hit(0, 0)).toBe(false);
 });
 
 it('can miss a placed ship', () => {
   let board = Board(10);
   board.placeShip(board.Carrier, 1, 2, true);
-  expect(board.isHit(0, 2)).toBe(false);
+  expect(board.hit(0, 2)).toBe(false);
 });
 
 it('cannot place a ship on the location of another ship', () => {
@@ -46,9 +46,9 @@ it('cannot place a ship on the location of another ship', () => {
 it('can remove a ship', () => {
   let board = Board(10);
   board.placeShip(board.PatrolBoat, 8, 8, true);
-  expect(board.isHit(9, 8)).not.toBe(true);
+  expect(board.hit(9, 8)).not.toBe(true);
   board.removeShip(board.PatrolBoat);
-  expect(board.isHit(9, 8)).toBe(false);
+  expect(board.hit(9, 8)).toBe(false);
 });
 
 it('can determine a ship has not sunk', () => {
@@ -60,8 +60,8 @@ it('can determine a ship has not sunk', () => {
 it('can detrmine a ship has been sunk', () => {
   let board = Board(10);
   board.placeShip(board.PatrolBoat, 1, 1, true);
-  board.isHit(1, 1);
-  board.isHit(2, 1);
+  board.hit(1, 1);
+  board.hit(2, 1);
   expect(board.isSunk(board.PatrolBoat)).toBe(true);
 });
 

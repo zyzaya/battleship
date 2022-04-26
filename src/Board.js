@@ -64,7 +64,7 @@ export default function Board(size) {
     ships[name].resetHits();
   };
 
-  let isHit = function (x, y) {
+  let hit = function (x, y) {
     for (const name in ships) {
       if (placedShips.includes(name) && ships[name].hit(x, y)) return name;
     }
@@ -85,7 +85,7 @@ export default function Board(size) {
     PatrolBoat: 'PatrolBoat',
     placeShip,
     removeShip,
-    isHit,
+    hit,
     isSunk,
   };
 }
