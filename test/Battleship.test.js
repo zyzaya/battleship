@@ -23,3 +23,11 @@ it("gets each player's ship positions", () => {
     expect(p2.getShipPosition).toHaveBeenCalledWith(name);
   }
 });
+
+it('ask for a guess from the current players turn', () => {
+  let p1 = fakePlayer();
+  let p2 = fakePlayer();
+  let battleship = Battleship(p1, p2);
+  battleship.start();
+  expect(p1.getGuess).toHaveBeenCalled();
+});
