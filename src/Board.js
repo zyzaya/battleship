@@ -9,6 +9,20 @@ export default function Board(size) {
     PatrolBoat: Ship(2),
   };
   let placedShips = [];
+  let validateShipInfo = function (name, x, y) {
+    if (ships[name] === undefined)
+      throw new Error('Error: name must be a valid ship name');
+    if (x < 0) throw new RangeError('x must be greater than or equal to zero');
+    if (y < 0) throw new RangeError('y must be greater than or equal to zero');
+    if (ships[name].isHorizontal() && x + ships[name].getLength() - 1 >= size)
+      throw new RangeError(
+        `x must be less than the size of the board (${size})`
+      );
+    if (!ships[name].isHorizontal() && y + ships[name].getLength() - 1 >= size)
+      throw new RangeError(
+        `y must be less than the size of the board (${size})`
+      );
+  };
 
   let isValidShipPlacement = function (name, x, y, horizontal) {
     if (ships[name] === undefined)
@@ -35,18 +49,7 @@ export default function Board(size) {
   };
 
   let placeShip = function (name, x, y, horizontal) {
-    if (ships[name] === undefined)
-      throw new Error('Error: name must be a valid ship name');
-    if (x < 0) throw new RangeError('x must be greater than or equal to zero');
-    if (y < 0) throw new RangeError('y must be greater than or equal to zero');
-    if (ships[name].isHorizontal() && x + ships[name].getLength() - 1 >= size)
-      throw new RangeError(
-        `x must be less than the size of the board (${size})`
-      );
-    if (!ships[name].isHorizontal() && y + ships[name].getLength() - 1 >= size)
-      throw new RangeError(
-        `y must be less than the size of the board (${size})`
-      );
+    validateShipInfo(name, x, y);
     if (!isValidShipPlacement(name, x, y, horizontal)) return false;
     ships[name].setOrigin(x, y);
     ships[name].setHorizontal(horizontal);
@@ -67,6 +70,8 @@ export default function Board(size) {
     }
     return false;
   };
+
+  let isSunk = function (name, x, y) {};
 
   return {
     Carrier: 'Carrier',
