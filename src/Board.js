@@ -71,7 +71,11 @@ export default function Board(size) {
     return false;
   };
 
-  let isSunk = function (name, x, y) {};
+  let isSunk = function (name) {
+    // if (ships[name] === undefined)
+    //   throw new Error('Error: name must be a valid ship name');
+    return ships[name].isSunk();
+  };
 
   return {
     Carrier: 'Carrier',
@@ -82,5 +86,6 @@ export default function Board(size) {
     placeShip,
     removeShip,
     isHit,
+    isSunk,
   };
 }

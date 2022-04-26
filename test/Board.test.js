@@ -46,3 +46,17 @@ it('can remove a ship', () => {
   board.removeShip(board.PatrolBoat);
   expect(board.isHit(9, 8)).toBe(false);
 });
+
+it('can determine a ship has not sunk', () => {
+  let board = Board(10);
+  board.placeShip(board.PatrolBoat, 1, 1, true);
+  expect(board.isSunk(board.PatrolBoat)).toBe(false);
+});
+
+it('can detrmine a ship has been sunk', () => {
+  let board = Board(10);
+  board.placeShip(board.PatrolBoat, 1, 1, true);
+  board.isHit(1, 1);
+  board.isHit(2, 1);
+  expect(board.isSunk(board.PatrolBoat)).toBe(true);
+});
