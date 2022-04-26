@@ -1,13 +1,13 @@
 import Ship from './Ship';
+import ShipNames from './ShipNames';
 
 export default function Board(size) {
-  let ships = {
-    Carrier: Ship(5),
-    Battleship: Ship(4),
-    Destroyer: Ship(3),
-    Submarine: Ship(2),
-    PatrolBoat: Ship(2),
-  };
+  let ships = {};
+  ships[ShipNames.Carrier] = Ship(5);
+  ships[ShipNames.Battleship] = Ship(4);
+  ships[ShipNames.Destroyer] = Ship(3);
+  ships[ShipNames.Submarine] = Ship(2);
+  ships[ShipNames.PatrolBoat] = Ship(2);
   let placedShips = [];
   let validateShipInfo = function (name, x, y) {
     if (ships[name] === undefined)
@@ -78,11 +78,6 @@ export default function Board(size) {
   };
 
   return {
-    Carrier: 'Carrier',
-    Battleship: 'Battleship',
-    Destroyer: 'Destroyer',
-    Submarine: 'Submarine',
-    PatrolBoat: 'PatrolBoat',
     placeShip,
     removeShip,
     hit,
