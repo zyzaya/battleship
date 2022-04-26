@@ -14,12 +14,16 @@ it('places a ship vertically', () => {
 
 it('does not allow a ship to be placed off of the board', () => {
   let board = Board(10);
-  expect(() => board.placeShip(board.Carrier, 7, 2, true)).toThrowError();
+  expect(() => board.placeShip(board.Carrier, 7, 2, true)).toThrowError(
+    RangeError
+  );
 });
 
 it('does not allow an invalid ship name', () => {
   let board = Board(10);
-  expect(() => board.placeShip('notaship', 2, 2, false)).toThrowError();
+  expect(() => board.placeShip('notaship', 2, 2, false)).toThrowError(
+    'valid ship name'
+  );
 });
 
 it('cannot his a ship that has not been placed', () => {
@@ -59,4 +63,11 @@ it('can detrmine a ship has been sunk', () => {
   board.isHit(1, 1);
   board.isHit(2, 1);
   expect(board.isSunk(board.PatrolBoat)).toBe(true);
+});
+
+it('does not allow an invalid ship name for isSunk', () => {
+  let board = Board(10);
+  expect(() => board.isSunk('notavalidshipname')).toThrowError(
+    'valid ship name'
+  );
 });

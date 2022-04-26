@@ -72,8 +72,8 @@ export default function Board(size) {
   };
 
   let isSunk = function (name) {
-    // if (ships[name] === undefined)
-    //   throw new Error('Error: name must be a valid ship name');
+    if (ships[name] === undefined)
+      throw new Error('Error: name must be a valid ship name');
     return ships[name].isSunk();
   };
 
