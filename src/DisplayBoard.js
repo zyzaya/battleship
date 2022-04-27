@@ -5,9 +5,13 @@ export default class DisplayBoard {
     for (let y = 0; y < 11; y++) {
       for (let x = 0; x < 11; x++) {
         let cell = document.createElement('div');
-        cell.classList.add('cell');
-        if (y === 0 && x > 0) cell.textContent = String.fromCharCode(64 + x);
-        else if (x === 0 && y > 0) cell.textContent = y.toString();
+        if (y === 0 && x > 0) {
+          cell.textContent = String.fromCharCode(64 + x);
+          cell.classList.add('labelCell');
+        } else if (x === 0 && y > 0) {
+          cell.textContent = y.toString();
+          cell.classList.add('labelCell');
+        } else if (x > 0 && y > 0) cell.classList.add('cell');
         div.appendChild(cell);
       }
     }

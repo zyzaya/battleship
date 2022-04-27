@@ -30,22 +30,28 @@
 
 .cell {
   text-align: center;
+  border: 1px solid black;
+}
+
+.labelCell {
+  text-align: center;
 }
 
 .shipyard {
   grid-area: 2 / 2 / 3 / 3;
   display: grid;
   grid-template-columns: repeat(2, 25px);
-  grid-template-rows: repeat(9, 25px);
-  grid-template-areas: "Carrier Destroyer"
-                       "Carrier Destroyer"
-                       "Carrier Destroyer"
-                       "Carrier Submarine"
-                       "Carrier Submarine"
+  grid-template-rows: repeat(10, 25px);
+  grid-template-areas: ".          ."
+                       "Carrier    Destroyer"
+                       "Carrier    Destroyer"
+                       "Carrier    Destroyer"
+                       "Carrier    Submarine"
+                       "Carrier    Submarine"
                        "Battleship Submarine"
                        "Battleship PatrolBoat"
                        "Battleship PatrolBoat"
-                       "Battleship none";
+                       "Battleship .";
   gap: 1px;
 }
 
@@ -53,4 +59,5 @@
   writing-mode: vertical-lr;
   text-align: center;
   font-size: x-small;
+  border: 1px solid black;
 }
