@@ -12,6 +12,19 @@ export default class DisplayBoard {
           cell.textContent = y.toString();
           cell.classList.add('labelCell');
         } else if (x > 0 && y > 0) cell.classList.add('cell');
+        cell.ondragover = (e) => e.preventDefault();
+        cell.ondrop = (e) => {
+          e.preventDefault();
+          let info = JSON.parse(e.dataTransfer.getData('text'));
+          let origin = document.elementFromPoint(
+            e.x - e.offsetX - info.offsetX + 25,
+            e.y - e.offsetY - info.offsetY + 25
+          );
+          if (origin.classList.contains('cell') && div.contains(origin)) {
+            cell.style.backgroundColor = 'red';
+            origin.style.backgroundColor = 'blue';
+          }
+        };
         div.appendChild(cell);
       }
     }

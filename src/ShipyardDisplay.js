@@ -7,8 +7,20 @@ export default class ShipyardDisplay {
     for (const name in ShipNames) {
       let ship = document.createElement('div');
       ship.classList.add(name);
+      ship.id = name;
       ship.classList.add('ship');
       ship.style.gridArea = name;
+      ship.draggable = true;
+      ship.ondragstart = (e) => {
+        e.dataTransfer.setData(
+          'text',
+          JSON.stringify({
+            id: e.target.id,
+            offsetX: e.offsetX,
+            offsetY: e.offsetY,
+          })
+        );
+      };
       ship.textContent = name;
       div.appendChild(ship);
     }
