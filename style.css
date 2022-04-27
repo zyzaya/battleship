@@ -1,12 +1,23 @@
 * {
   margin: 0;
   padding: 0;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .container {
-  max-width: 800px;
-  margin: auto;
+  justify-content: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: min-content min-content;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.container > :first-child {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.container > :nth-child(2) {
+  grid-area: 2 / 1 / 3 / 2;
 }
 
 .board {
@@ -19,4 +30,27 @@
 
 .cell {
   text-align: center;
+}
+
+.shipyard {
+  grid-area: 2 / 2 / 3 / 3;
+  display: grid;
+  grid-template-columns: repeat(2, 25px);
+  grid-template-rows: repeat(9, 25px);
+  grid-template-areas: "Carrier Destroyer"
+                       "Carrier Destroyer"
+                       "Carrier Destroyer"
+                       "Carrier Submarine"
+                       "Carrier Submarine"
+                       "Battleship Submarine"
+                       "Battleship PatrolBoat"
+                       "Battleship PatrolBoat"
+                       "Battleship none";
+  gap: 1px;
+}
+
+.ship {
+  writing-mode: vertical-lr;
+  text-align: center;
+  font-size: x-small;
 }
