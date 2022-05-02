@@ -7,10 +7,8 @@ export default class DisplayBoard {
     let draw = function () {
       for (const name in ShipNames) {
         let info = board.getShipInfo(name);
-        console.log(`${info}, ${name}`);
         if (info != undefined) {
           let shipIcon = document.getElementById(name);
-          console.log(info);
           shipIcon.style.gridArea = `${info.origin.y + 2} / ${
             info.origin.x + 2
           } / ${info.origin.y + 2 + info.length} / ${info.origin.x + 3}`;
@@ -41,7 +39,6 @@ export default class DisplayBoard {
           );
           if (origin.classList.contains('cell') && div.contains(origin)) {
             let originCoords = JSON.parse(origin.id);
-            console.log(info);
             board.removeShip(info.id);
             board.placeShip(info.id, originCoords.x, originCoords.y, false);
             draw();
