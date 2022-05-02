@@ -72,3 +72,13 @@ it('does not allow an invalid ship name for isSunk', () => {
     'valid ship name'
   );
 });
+
+it('can retrieve accurate info of a ship', () => {
+  let board = Board(10);
+  board.placeShip(ShipNames.PatrolBoat, 2, 3, false);
+  let info = board.getShipInfo(ShipNames.PatrolBoat);
+  expect(info.origin.x).toBe(2);
+  expect(info.origin.y).toBe(3);
+  expect(info.horizontal).toBe(false);
+  expect(info.sunk).toBe(false);
+});

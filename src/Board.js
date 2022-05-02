@@ -77,10 +77,22 @@ export default function Board(size) {
     return ships[name].isSunk();
   };
 
+  let getShipInfo = function (name) {
+    if (ships[name] === undefined)
+      throw new Error('Error: name must be a valid ship name');
+    if (!placedShips.includes(name)) return {};
+    return {
+      origin: ships[name].getOrigin(),
+      horizontal: ships[name].isHorizontal(),
+      sunk: ships[name].isSunk(),
+    };
+  };
+
   return {
     placeShip,
     removeShip,
     hit,
     isSunk,
+    getShipInfo,
   };
 }
