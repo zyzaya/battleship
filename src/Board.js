@@ -6,7 +6,7 @@ export default function Board(size) {
   ships[ShipNames.Carrier] = Ship(5);
   ships[ShipNames.Battleship] = Ship(4);
   ships[ShipNames.Destroyer] = Ship(3);
-  ships[ShipNames.Submarine] = Ship(2);
+  ships[ShipNames.Submarine] = Ship(3);
   ships[ShipNames.PatrolBoat] = Ship(2);
   let placedShips = [];
   let validateShipInfo = function (name, x, y) {
