@@ -4,7 +4,6 @@ export default class DisplayBoard {
   constructor(container, board) {
     let div = document.createElement('div');
     div.classList.add('board');
-
     let draw = function () {
       for (const name in ShipNames) {
         let info = board.getShipInfo(name);
@@ -24,6 +23,7 @@ export default class DisplayBoard {
       for (let x = 0; x < 11; x++) {
         let cell = document.createElement('div');
         cell.id = JSON.stringify({ x: x - 1, y: y - 1 });
+        cell.style.gridArea = `${y + 1} / ${x + 1} / ${y + 2} / ${x + 2}`;
         if (y === 0 && x > 0) {
           cell.textContent = String.fromCharCode(64 + x);
           cell.classList.add('labelCell');
@@ -45,13 +45,6 @@ export default class DisplayBoard {
             board.removeShip(info.id);
             board.placeShip(info.id, originCoords.x, originCoords.y, false);
             draw();
-            // draw();
-            // remove ship
-            // place ship
-            // draw
-            // console.log(originCoords);
-            // cell.style.backgroundColor = 'red';
-            // origin.style.backgroundColor = 'blue';
           }
         };
         // cell.ondrop = (e) => {
