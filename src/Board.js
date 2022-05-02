@@ -80,11 +80,12 @@ export default function Board(size) {
   let getShipInfo = function (name) {
     if (ships[name] === undefined)
       throw new Error('Error: name must be a valid ship name');
-    if (!placedShips.includes(name)) return {};
+    if (!placedShips.includes(name)) return undefined;
     return {
       origin: ships[name].getOrigin(),
       horizontal: ships[name].isHorizontal(),
       sunk: ships[name].isSunk(),
+      length: ships[name].getLength(),
     };
   };
 
