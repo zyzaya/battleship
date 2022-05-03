@@ -13,7 +13,7 @@ export default function Display(battleship, container) {
       e.y - e.offsetY - info.offsetY + 25
     );
     battleship.placeShip(info.id, origin.x, origin.y, true);
-    // player.draw(battleship.getShipInfo())
+    player.draw(battleship.getShipInfo());
     // let origin = document.elementFromPoint(
     //   e.x - e.offsetX - info.offsetX + 25,
     //   e.y - e.offsetY - info.offsetY + 25
