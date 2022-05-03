@@ -1,6 +1,10 @@
+import Display from './Display';
 import ShipNames from './ShipNames';
 
 export default function DisplayBoard(container) {
+  let displayBoard = {};
+  displayBoard.onCellDrop = {};
+  displayBoard.onCellClick = {};
   let div = document.createElement('div');
   div.classList.add('board');
   let draw = function () {
@@ -44,6 +48,8 @@ export default function DisplayBoard(container) {
 
       cell.ondragover = (e) => e.preventDefault();
       cell.ondrop = (e) => {
+        if (displayBoard.onCellDrop instanceof Function)
+          displayBoard.onCellDrop(e, x + 1, y + 1);
         // e.preventDefault();
         // let info = JSON.parse(e.dataTransfer.getData('text'));
         // let origin = document.elementFromPoint(
@@ -61,4 +67,5 @@ export default function DisplayBoard(container) {
     }
   }
   container.appendChild(div);
+  return displayBoard;
 }

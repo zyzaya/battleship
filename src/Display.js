@@ -2,8 +2,12 @@ import DisplayBoard from './DisplayBoard';
 import Shipyard from './Shipyard';
 
 export default function Display(battleship, container) {
-  let opponent = new DisplayBoard(container);
-  let player = new DisplayBoard(container);
+  let opponent = DisplayBoard(container);
+  let player = DisplayBoard(container);
+  player.onCellDrop = (e, x, y) => {
+    console.log(e);
+  };
+  player.onCellClick = (e, x, y) => {};
   let shipyard = Shipyard(container);
   shipyard.onShipDragStart = (e, name) => {
     e.dataTransfer.setData(
