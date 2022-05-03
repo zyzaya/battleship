@@ -5,7 +5,7 @@ export default function Ship(length) {
     throw new RangeError('Ship length cannot be less than zero');
   let x = 0;
   let y = 0;
-  let horizontal = true;
+  let horizontal = false;
   let hits = [];
 
   let getLength = () => {

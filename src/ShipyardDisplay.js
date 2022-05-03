@@ -1,7 +1,7 @@
 import ShipNames from './ShipNames';
 
 export default class ShipyardDisplay {
-  constructor(container) {
+  constructor(container, board) {
     let div = document.createElement('div');
     div.classList.add('shipyard');
     for (const name in ShipNames) {
@@ -20,6 +20,12 @@ export default class ShipyardDisplay {
             offsetY: e.offsetY,
           })
         );
+      };
+      ship.onclick = (e) => {
+        let info = board.getShipInfo(name);
+        if (info === undefined) return;
+        console.log(info);
+        board.placeShip(name, info.origin.x, info.origin.y, !info.horizontal);
       };
       ship.textContent = name;
       div.appendChild(ship);

@@ -43,6 +43,7 @@ it('can be hit when horizontal', () => {
   let ship = Ship(5);
   // 3 4 5 6 7
   ship.setOrigin(3, -5);
+  ship.setHorizontal(true);
   expect(ship.hit(5, -5)).toBe(true);
 });
 
