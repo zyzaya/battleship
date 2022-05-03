@@ -7,23 +7,12 @@ export default function Display(battleship, container) {
   player.onCellDrop = (e, x, y) => {
     e.preventDefault();
     let info = JSON.parse(e.dataTransfer.getData('text'));
-    // get cell at screen point
     let origin = player.cellFromPoint(
       e.x - e.offsetX - info.offsetX + 25,
       e.y - e.offsetY - info.offsetY + 25
     );
-    battleship.placeShip(info.id, origin.x, origin.y, true);
-    player.draw(battleship.getShipInfo());
-    // let origin = document.elementFromPoint(
-    //   e.x - e.offsetX - info.offsetX + 25,
-    //   e.y - e.offsetY - info.offsetY + 25
-    // );
-
-    // if (origin.classList.contains('cell') && div.contains(origin)) {
-    //   let originCoords = JSON.parse(origin.id);
-    //   board.removeShip(info.id);
-    //   board.placeShip(info.id, originCoords.x, originCoords.y, false);
-    // }
+    battleship.placeShip(info.name, origin.x, origin.y, true);
+    player.drawShip(info.name, battleship.getShipInfo(info.name, true));
   };
   player.onCellClick = (e, x, y) => {};
   let shipyard = Shipyard(container);
@@ -31,7 +20,7 @@ export default function Display(battleship, container) {
     e.dataTransfer.setData(
       'text',
       JSON.stringify({
-        id: e.target.id,
+        name: e.target.id,
         offsetX: e.offsetX,
         offsetY: e.offsetY,
       })

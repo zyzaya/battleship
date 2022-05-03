@@ -13,30 +13,27 @@ export default function DisplayBoard(container) {
   };
   let div = document.createElement('div');
   div.classList.add('board');
-  let draw = function () {
-    // for (const name in ShipNames) {
-    //   let info = board.getShipInfo(name);
-    //   if (info != undefined) {
-    //     let shipIcon = document.getElementById(name);
-    //     let right = info.origin.x + 3;
-    //     let bottom = info.origin.y + 3;
-    //     if (info.horizontal) {
-    //       right += info.length - 1;
-    //       shipIcon.classList.remove('verticalShip');
-    //       shipIcon.classList.add('horizontalShip');
-    //     } else {
-    //       bottom += info.length - 1;
-    //       shipIcon.classList.remove('horizontalShip');
-    //       shipIcon.classList.add('verticalShip');
-    //     }
-    //     shipIcon.style.gridArea = `
-    //         ${info.origin.y + 2} /
-    //         ${info.origin.x + 2} /
-    //         ${bottom} /
-    //         ${right}`;
-    //     div.appendChild(shipIcon);
-    //   }
-    // }
+  displayBoard.drawShip = function (name, info) {
+    if (info != undefined) {
+      let ship = document.getElementById(name);
+      let right = info.origin.x + 3;
+      let bottom = info.origin.y + 3;
+      if (info.horizontal) {
+        right += info.length - 1;
+        ship.classList.remove('verticalShip');
+        ship.classList.add('horizontalShip');
+      } else {
+        bottom += info.length - 1;
+        ship.classList.remove('horizontalShip');
+        ship.classList.add('verticalShip');
+      }
+      ship.style.gridArea = `
+            ${info.origin.y + 2} /
+            ${info.origin.x + 2} /
+            ${bottom} /
+            ${right}`;
+      div.appendChild(ship);
+    }
   };
 
   for (let y = 0; y < 11; y++) {
