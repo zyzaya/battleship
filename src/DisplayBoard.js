@@ -9,11 +9,23 @@ export default class DisplayBoard {
         let info = board.getShipInfo(name);
         if (info != undefined) {
           let shipIcon = document.getElementById(name);
+          let right = info.origin.x + 3;
+          let bottom = info.origin.y + 3;
+          if (info.horizontal) {
+            right += info.length - 1;
+            shipIcon.classList.remove('verticalShip');
+            shipIcon.classList.add('horizontalShip');
+          } else {
+            bottom += info.length - 1;
+            shipIcon.classList.remove('horizontalShip');
+            shipIcon.classList.add('verticalShip');
+          }
+
           shipIcon.style.gridArea = `
             ${info.origin.y + 2} / 
             ${info.origin.x + 2} / 
-            ${info.origin.y + 2 + info.length} / 
-            ${info.origin.x + 3}`;
+            ${bottom} / 
+            ${right}`;
           div.appendChild(shipIcon);
         }
       }

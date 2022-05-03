@@ -9,6 +9,7 @@ export default class ShipyardDisplay {
       ship.classList.add(name);
       ship.id = name;
       ship.classList.add('ship');
+      ship.classList.add('verticalShip');
       ship.style.gridArea = name;
       ship.draggable = true;
       ship.ondragstart = (e) => {

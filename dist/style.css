@@ -56,9 +56,16 @@
 }
 
 .ship {
-  writing-mode: vertical-lr;
   text-align: center;
   font-size: x-small;
   border: 1px solid black;
   background-color: white;
+}
+
+.horizontalShip {
+  writing-mode: horizontal-tb;
+}
+
+.verticalShip {
+  writing-mode: vertical-lr;
 }
