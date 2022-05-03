@@ -18,14 +18,6 @@ export default function Shipyard(container) {
     ship.ondragstart = (e) => {
       if (shipyard.onShipDragStart instanceof Function)
         shipyard.onShipDragStart(e, name);
-      // e.dataTransfer.setData(
-      //   'text',
-      //   JSON.stringify({
-      //     id: e.target.id,
-      //     offsetX: e.offsetX,
-      //     offsetY: e.offsetY,
-      //   })
-      // );
     };
     ship.onclick = (e) => {
       if (shipyard.onShipClick instanceof Function)
