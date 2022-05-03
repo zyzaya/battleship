@@ -5,6 +5,12 @@ export default function DisplayBoard(container) {
   let displayBoard = {};
   displayBoard.onCellDrop = {};
   displayBoard.onCellClick = {};
+  displayBoard.cellFromPoint = function (x, y) {
+    let cell = document.elementFromPoint(x, y);
+    if (cell.classList.contains('cell') && div.contains(cell))
+      return JSON.parse(cell.id);
+    else return undefined;
+  };
   let div = document.createElement('div');
   div.classList.add('board');
   let draw = function () {
@@ -50,18 +56,6 @@ export default function DisplayBoard(container) {
       cell.ondrop = (e) => {
         if (displayBoard.onCellDrop instanceof Function)
           displayBoard.onCellDrop(e, x + 1, y + 1);
-        // e.preventDefault();
-        // let info = JSON.parse(e.dataTransfer.getData('text'));
-        // let origin = document.elementFromPoint(
-        //   e.x - e.offsetX - info.offsetX + 25,
-        //   e.y - e.offsetY - info.offsetY + 25
-        // );
-        // if (origin.classList.contains('cell') && div.contains(origin)) {
-        //   let originCoords = JSON.parse(origin.id);
-        //   board.removeShip(info.id);
-        //   board.placeShip(info.id, originCoords.x, originCoords.y, false);
-        //   draw();
-        // }
       };
       div.appendChild(cell);
     }
