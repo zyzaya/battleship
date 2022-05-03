@@ -54,6 +54,10 @@ export default function DisplayBoard(container) {
           if (displayBoard.onCellDrop instanceof Function)
             displayBoard.onCellDrop(e, x + 1, y + 1);
         };
+        cell.onclick = (e) => {
+          if (displayBoard.onCellClick instanceof Function)
+            displayBoard.onCellClick(e, x + 1, y + 1);
+        };
         div.appendChild(cell);
       }
     }
