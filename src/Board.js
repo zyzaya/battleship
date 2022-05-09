@@ -95,5 +95,6 @@ export default function Board(size) {
     hit,
     isSunk,
     getShipInfo,
+    isValidShipPlacement,
   };
 }

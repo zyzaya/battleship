@@ -82,3 +82,10 @@ it('can retrieve accurate info of a ship', () => {
   expect(info.horizontal).toBe(false);
   expect(info.sunk).toBe(false);
 });
+
+it('can determine if ship placement is valid', () => {
+  let board = Board(10);
+  expect(board.isValidShipPlacement(ShipNames.Battleship, 4, 1, true)).toBe(
+    true
+  );
+});
