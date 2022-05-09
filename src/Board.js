@@ -31,6 +31,8 @@ export default function Board(size) {
     let top = y;
     let right = horizontal ? left + ships[name].getLength() - 1 : left;
     let bottom = horizontal ? top : top + ships[name].getLength() - 1;
+    if (left < 0 || right < 0 || right >= size || bottom >= size) return false;
+
     return !placedShips.some((val) => {
       if (val !== name) {
         let l = ships[val].getOrigin().x;

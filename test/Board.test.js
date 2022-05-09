@@ -89,3 +89,10 @@ it('can determine if ship placement is valid', () => {
     true
   );
 });
+
+it('can determine if ship placement is invalid', () => {
+  let board = Board(10);
+  expect(board.isValidShipPlacement(ShipNames.Battleship, 7, 1, true)).toBe(
+    false
+  );
+});

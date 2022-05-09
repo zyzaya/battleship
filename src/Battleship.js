@@ -6,8 +6,10 @@ export default function Battleship(player1, player2) {
   let p2Board = Board(10);
 
   let placeShip = function (name, x, y, horizontal, isPlayer1) {
-    if (isPlayer1) p1Board.placeShip(name, x, y, horizontal);
-    else p2Board.placeShip(name, x, y);
+    if (isPlayer1 && p1Board.isValidShipPlacement(name, x, y, horizontal))
+      p1Board.placeShip(name, x, y, horizontal);
+    else if (p2Board.isValidShipPlacement(name, x, y, horizontal))
+      p2Board.placeShip(name, x, y);
   };
 
   let getShipInfo = function (name, isPlayer1) {
