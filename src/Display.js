@@ -22,7 +22,11 @@ export default function Display(battleship, container) {
     player.drawShip(info.name, battleship.getShipInfo(info.name, true));
     if (isAllShipsPlaced()) start.disabled = false;
   };
-  // player.onCellClick = (e, x, y) => {};
+  player.onCellClick = (e, x, y) => {
+    // if is p1 turn then
+    // get cell from point
+    // get to battleship somehow?
+  };
 
   let shipyard = Shipyard(container);
   shipyard.onShipDragStart = (e, name) => {
@@ -56,6 +60,10 @@ export default function Display(battleship, container) {
   start.classList.add('start');
   start.disabled = true;
   start.textContent = 'Start Game';
+  start.onclick = () => {
+    // set opponent stuff
+    battleship.start();
+  };
   startDiv.appendChild(start);
   container.appendChild(startDiv);
   return {};

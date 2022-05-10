@@ -26,6 +26,7 @@ export default function Battleship(player1, player2) {
     let currentBoard = isP1Turn ? p1Board : p2Board;
     let currentPlayer = isP1Turn ? player1 : player2;
     let guess = await currentPlayer.getGuess();
+    console.log(guess);
     if (!isValidGuess(guess.x, guess.y))
       throw new RangeError(
         `Player ${isP1Turn ? '1' : '2'} guess is invalid. (${guess})`
