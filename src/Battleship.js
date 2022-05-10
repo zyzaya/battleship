@@ -1,5 +1,4 @@
 import Board from './Board';
-import ShipNames from './ShipNames';
 
 export default function Battleship(player1, player2) {
   let size = 10;
