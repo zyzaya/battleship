@@ -7,7 +7,6 @@ export default function Player() {
         setTimeout(() => resolve(), 50);
       });
     }
-    // if there is a guess return it. otherwise wait for one.
     let ret = { x: guess.x, y: guess.y };
     guess = undefined;
     return ret;

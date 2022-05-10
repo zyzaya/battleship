@@ -3,7 +3,7 @@ import ShipNames from './ShipNames';
 import Shipyard from './Shipyard';
 
 export default function Display(battleship, container) {
-  /*let opponent = */ DisplayBoard(container);
+  let opponent = DisplayBoard(container);
   let player = DisplayBoard(container);
 
   let isAllShipsPlaced = function () {
@@ -22,9 +22,9 @@ export default function Display(battleship, container) {
     player.drawShip(info.name, battleship.getShipInfo(info.name, true));
     if (isAllShipsPlaced()) start.disabled = false;
   };
-  player.onCellClick = (e, x, y) => {
-    // if is p1 turn then
-    // get cell from point
+  opponent.onCellClick = (e) => {
+    let origin = opponent.cellFromPoint(e.x - e.offsetX, e.y - e.offsetY);
+    console.log(origin);
     // get to battleship somehow?
   };
 
