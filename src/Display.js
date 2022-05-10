@@ -1,10 +1,16 @@
 import DisplayBoard from './DisplayBoard';
+import ShipNames from './ShipNames';
 import Shipyard from './Shipyard';
 
 export default function Display(battleship, container) {
   /*let opponent = */ DisplayBoard(container);
-
   let player = DisplayBoard(container);
+
+  let isAllShipsPlaced = function () {
+    return Object.keys(ShipNames).every(
+      (name) => battleship.getShipInfo(name, true) !== undefined
+    );
+  };
   player.onCellDrop = (e) => {
     e.preventDefault();
     let info = JSON.parse(e.dataTransfer.getData('text'));
@@ -14,6 +20,7 @@ export default function Display(battleship, container) {
     );
     battleship.placeShip(info.name, origin.x, origin.y, info.horizontal, true);
     player.drawShip(info.name, battleship.getShipInfo(info.name, true));
+    if (isAllShipsPlaced()) start.disabled = false;
   };
   // player.onCellClick = (e, x, y) => {};
 
@@ -47,6 +54,7 @@ export default function Display(battleship, container) {
   let startDiv = document.createElement('div');
   let start = document.createElement('button');
   start.classList.add('start');
+  start.disabled = true;
   start.textContent = 'Start Game';
   startDiv.appendChild(start);
   container.appendChild(startDiv);
