@@ -7,7 +7,9 @@ let container = document.getElementById('container');
 // let board = Board(10);
 // let player = new DisplayBoard(container, board);
 // let shipyard = new ShipyardDisplay(container, board);
-Display(Battleship(Player(), Player()), container);
+let player = Player();
+let opponent = Player();
+Display(Battleship(player, opponent), player, opponent, container);
 
 // let finish = false;
 // let getGuess = async function (i) {

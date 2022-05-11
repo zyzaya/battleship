@@ -2,30 +2,39 @@ import DisplayBoard from './DisplayBoard';
 import ShipNames from './ShipNames';
 import Shipyard from './Shipyard';
 
-export default function Display(battleship, container) {
-  let opponent = DisplayBoard(container);
-  let player = DisplayBoard(container);
+export default function Display(battleship, player, opponent, container) {
+  let opponentDisplay = DisplayBoard(container);
+  let playerDisplay = DisplayBoard(container);
 
   let isAllShipsPlaced = function () {
     return Object.keys(ShipNames).every(
       (name) => battleship.getShipInfo(name, true) !== undefined
     );
   };
-  player.onCellDrop = (e) => {
+  playerDisplay.onCellDrop = (e) => {
     e.preventDefault();
     let info = JSON.parse(e.dataTransfer.getData('text'));
-    let origin = player.cellFromPoint(
+    let origin = playerDisplay.cellFromPoint(
       e.x - e.offsetX - info.offsetX + 25,
       e.y - e.offsetY - info.offsetY + 25
     );
-    battleship.placeShip(info.name, origin.x, origin.y, info.horizontal, true);
-    player.drawShip(info.name, battleship.getShipInfo(info.name, true));
+    if (origin !== undefined)
+      battleship.placeShip(
+        info.name,
+        origin.x,
+        origin.y,
+        info.horizontal,
+        true
+      );
+    playerDisplay.drawShip(info.name, battleship.getShipInfo(info.name, true));
     if (isAllShipsPlaced()) start.disabled = false;
   };
-  opponent.onCellClick = (e) => {
-    let origin = opponent.cellFromPoint(e.x - e.offsetX, e.y - e.offsetY);
-    console.log(origin);
-    // get to battleship somehow?
+  opponentDisplay.onCellClick = (e) => {
+    let origin = opponentDisplay.cellFromPoint(
+      e.x - e.offsetX,
+      e.y - e.offsetY
+    );
+    player.setGuess(origin.x, origin.y);
   };
 
   let shipyard = Shipyard(container);
@@ -52,7 +61,7 @@ export default function Display(battleship, container) {
       !info.horizontal,
       true
     );
-    player.drawShip(name, battleship.getShipInfo(name, true));
+    playerDisplay.drawShip(name, battleship.getShipInfo(name, true));
   };
 
   let startDiv = document.createElement('div');
