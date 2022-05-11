@@ -75,5 +75,29 @@ export default function Display(battleship, player, opponent, container) {
   };
   startDiv.appendChild(start);
   container.appendChild(startDiv);
-  return {};
+
+  let drawShips = function () {
+    for (const name in ShipNames) {
+      playerDisplay.drawShip(name, battleship.getShipInfo(name));
+    }
+  };
+
+  let drawGuesses = function () {
+    player.getHistory().forEach((e) => {
+      opponentDisplay.drawGuess(e.x, e.y, true);
+    });
+
+    opponent.getHistory().forEach((e) => {
+      playerDisplay.drawGuess(e.x, e.y, true);
+    });
+  };
+
+  let draw = function () {
+    drawShips();
+    drawGuesses();
+    // for each placed ship draw ship on player board
+    // for each player guess draw x or o on opponent board
+    // for each opponent guess draw x or o on player board
+  };
+  return { draw };
 }

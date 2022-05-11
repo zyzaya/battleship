@@ -35,6 +35,11 @@ export default function DisplayBoard(container) {
     }
   };
 
+  displayBoard.drawGuess = function (x, y, isHit) {
+    let cell = document.getElementById(JSON.stringify({ x, y }));
+    cell.textContent = isHit ? 'X' : '0';
+  };
+
   let setupCells = function () {
     for (let y = 0; y < 11; y++) {
       for (let x = 0; x < 11; x++) {

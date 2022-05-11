@@ -1,5 +1,6 @@
 export default function Player() {
   let guess = undefined;
+  let history = [];
 
   let getGuess = async function () {
     while (guess === undefined) {
@@ -8,6 +9,7 @@ export default function Player() {
       });
     }
     let ret = { x: guess.x, y: guess.y };
+    history.push(ret);
     guess = undefined;
     return ret;
   };
@@ -16,5 +18,9 @@ export default function Player() {
     guess = { x: x, y: y };
   };
 
-  return { getGuess, setGuess };
+  let getHistory = function () {
+    return [...history];
+  };
+
+  return { getGuess, setGuess, getHistory };
 }
