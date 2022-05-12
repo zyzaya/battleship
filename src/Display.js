@@ -70,7 +70,12 @@ export default function Display(battleship, player, opponent, container) {
   start.disabled = true;
   start.textContent = 'Start Game';
   start.onclick = () => {
-    // set opponent stuff
+    for (const name in ShipNames) {
+      let pos = opponent.getShipPosition(name);
+      console.log(`${name}: ${pos}`);
+      battleship.placeShip(name, pos.x, pos.y, pos.horizontal, false);
+      opponentDisplay.drawShip(name, battleship.getShipInfo(name, false));
+    }
     battleship.start();
   };
   startDiv.appendChild(start);
@@ -78,7 +83,7 @@ export default function Display(battleship, player, opponent, container) {
 
   let drawShips = function () {
     for (const name in ShipNames) {
-      playerDisplay.drawShip(name, battleship.getShipInfo(name));
+      playerDisplay.drawShip(name, battleship.getShipInfo(name, true));
     }
   };
 

@@ -16,11 +16,15 @@ export default function Board(size) {
     if (y < 0) throw new RangeError('y must be greater than or equal to zero');
     if (horizontal && x + ships[name].getLength() - 1 >= size)
       throw new RangeError(
-        `x must be less than the size of the board (${size})`
+        `x ${
+          x + ships[name].getLength() - 1
+        } must be less than the size of the board (${size})`
       );
     if (!horizontal && y + ships[name].getLength() - 1 >= size)
       throw new RangeError(
-        `y must be less than the size of the board (${size})`
+        `y (${
+          y + ships[name].getLength() - 1
+        }) must be less than the size of the board (${size})`
       );
   };
 

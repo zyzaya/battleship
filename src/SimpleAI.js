@@ -12,7 +12,7 @@ export default function SimpleAI() {
     return {
       x: Math.floor(Math.random() * (max - min + 1)) + min,
       y: Math.floor(Math.random() * (max - min + 1)) + min,
-      horizontal: Math.random < 0.5,
+      horizontal: Math.random() < 0.5,
     };
   };
 
@@ -21,14 +21,17 @@ export default function SimpleAI() {
 
     for (const name in ShipNames) {
       let pos = getRandomPosition();
-      while (!board.validateShipInfo(name, pos.x, pos.y, pos.horizontal)) {
+      while (!board.isValidShipPlacement(name, pos.x, pos.y, pos.horizontal)) {
         pos = getRandomPosition();
       }
+      board.placeShip(name, pos.x, pos.y, pos.horizontal);
       ships[name] = pos;
     }
   };
 
-  let getShipPosition = function () {};
+  let getShipPosition = function (name) {
+    return ships[name];
+  };
 
   let getGuess = function () {};
 

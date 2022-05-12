@@ -1,6 +1,7 @@
 import Battleship from './Battleship';
 import Display from './Display';
 import Player from './Player';
+import SimpleAI from './SimpleAI';
 
 let container = document.getElementById('container');
 // let opponent = new DisplayBoard(container);
@@ -8,7 +9,7 @@ let container = document.getElementById('container');
 // let player = new DisplayBoard(container, board);
 // let shipyard = new ShipyardDisplay(container, board);
 let player = Player();
-let opponent = Player();
+let opponent = SimpleAI();
 let battleship = Battleship(player, opponent);
 let display = Display(battleship, player, opponent, container);
 battleship.onDraw = () => {

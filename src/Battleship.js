@@ -16,7 +16,7 @@ export default function Battleship(player1, player2) {
     if (isPlayer1 && p1Board.isValidShipPlacement(name, x, y, horizontal))
       p1Board.placeShip(name, x, y, horizontal);
     else if (p2Board.isValidShipPlacement(name, x, y, horizontal))
-      p2Board.placeShip(name, x, y);
+      p2Board.placeShip(name, x, y, horizontal);
   };
 
   obj.getShipInfo = function (name, isPlayer1) {
