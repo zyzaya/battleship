@@ -35,7 +35,7 @@ export default function SimpleAI() {
   };
 
   let getGuess = function () {
-    let i = Math.floor(Math.random() * (remainingGuesses.length + 1));
+    let i = Math.floor(Math.random() * remainingGuesses.length);
     let guess = remainingGuesses[i];
     guess.isHit = false;
     history.push(guess);

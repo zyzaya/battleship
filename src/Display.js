@@ -3,8 +3,8 @@ import ShipNames from './ShipNames';
 import Shipyard from './Shipyard';
 
 export default function Display(battleship, player, opponent, container) {
-  let opponentDisplay = DisplayBoard(container);
-  let playerDisplay = DisplayBoard(container);
+  let opponentDisplay = DisplayBoard(container, 'opponent');
+  let playerDisplay = DisplayBoard(container, 'player');
 
   let isAllShipsPlaced = function () {
     return Object.keys(ShipNames).every(

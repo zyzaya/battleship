@@ -1,4 +1,4 @@
-export default function DisplayBoard(container) {
+export default function DisplayBoard(container, name) {
   let div = document.createElement('div');
   div.classList.add('board');
 
@@ -36,7 +36,7 @@ export default function DisplayBoard(container) {
   };
 
   displayBoard.drawGuess = function (x, y, isHit) {
-    let cell = document.getElementById(JSON.stringify({ x, y }));
+    let cell = document.getElementById(JSON.stringify({ name, x, y }));
     cell.textContent = isHit ? 'X' : '0';
   };
 
@@ -44,7 +44,7 @@ export default function DisplayBoard(container) {
     for (let y = 0; y < 11; y++) {
       for (let x = 0; x < 11; x++) {
         let cell = document.createElement('div');
-        cell.id = JSON.stringify({ x: x - 1, y: y - 1 });
+        cell.id = JSON.stringify({ name, x: x - 1, y: y - 1 });
         cell.style.gridArea = `${y + 1} / ${x + 1} / ${y + 2} / ${x + 2}`;
         if (y === 0 && x > 0) {
           cell.textContent = String.fromCharCode(64 + x);
