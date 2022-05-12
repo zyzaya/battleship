@@ -1,8 +1,32 @@
+import Board from './Board';
+import ShipNames from './ShipNames';
+
 export default function SimpleAI() {
   let guess = undefined;
   let history = [];
+  let ships = {};
 
-  let shuffleShipPosition = function () {};
+  let getRandomPosition = function () {
+    let min = 0;
+    let max = 10;
+    return {
+      x: Math.floor(Math.random() * (max - min + 1)) + min,
+      y: Math.floor(Math.random() * (max - min + 1)) + min,
+      horizontal: Math.random < 0.5,
+    };
+  };
+
+  let shuffleShipPositions = function () {
+    let board = Board(10);
+
+    for (const name in ShipNames) {
+      let pos = getRandomPosition();
+      while (!board.validateShipInfo(name, pos.x, pos.y, pos.horizontal)) {
+        pos = getRandomPosition();
+      }
+      ships[name] = pos;
+    }
+  };
 
   let getShipPosition = function () {};
 
@@ -12,6 +36,6 @@ export default function SimpleAI() {
     return [...history];
   };
 
-  shuffleShipPosition();
-  return { getGuess, getHistory, getShipPosition, shuffleShipPosition };
+  shuffleShipPositions();
+  return { getGuess, getHistory, getShipPosition, shuffleShipPositions };
 }
