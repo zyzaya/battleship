@@ -8,7 +8,7 @@ export default function Player() {
         setTimeout(() => resolve(), 50);
       });
     }
-    let ret = { x: guess.x, y: guess.y };
+    let ret = { x: guess.x, y: guess.y, isHit: false };
     history.push(ret);
     guess = undefined;
     return ret;
@@ -18,9 +18,13 @@ export default function Player() {
     guess = { x: x, y: y };
   };
 
+  let setFeedback = function (isHit) {
+    history[history.length - 1].isHit = isHit;
+  };
+
   let getHistory = function () {
     return [...history];
   };
 
-  return { getGuess, setGuess, getHistory };
+  return { getGuess, setGuess, getHistory, setFeedback };
 }

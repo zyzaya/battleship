@@ -72,9 +72,9 @@ export default function Display(battleship, player, opponent, container) {
   start.onclick = () => {
     for (const name in ShipNames) {
       let pos = opponent.getShipPosition(name);
-      console.log(`${name}: ${pos}`);
+      console.log(`${name}: ${JSON.stringify(pos)}`);
       battleship.placeShip(name, pos.x, pos.y, pos.horizontal, false);
-      opponentDisplay.drawShip(name, battleship.getShipInfo(name, false));
+      // opponentDisplay.drawShip(name, battleship.getShipInfo(name, false));
     }
     battleship.start();
   };
@@ -89,11 +89,11 @@ export default function Display(battleship, player, opponent, container) {
 
   let drawGuesses = function () {
     player.getHistory().forEach((e) => {
-      opponentDisplay.drawGuess(e.x, e.y, true);
+      opponentDisplay.drawGuess(e.x, e.y, e.isHit);
     });
 
     opponent.getHistory().forEach((e) => {
-      playerDisplay.drawGuess(e.x, e.y, true);
+      playerDisplay.drawGuess(e.x, e.y, e.isHit);
     });
   };
 

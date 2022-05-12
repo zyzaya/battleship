@@ -33,7 +33,9 @@ export default function SimpleAI() {
     return ships[name];
   };
 
-  let getGuess = function () {};
+  let getGuess = function () {
+    throw new Error();
+  };
 
   let getHistory = function () {
     return [...history];

@@ -24,27 +24,21 @@ export default function Battleship(player1, player2) {
   };
 
   let nextTurn = async function () {
-    let currentBoard = isP1Turn ? p1Board : p2Board;
+    let opponentBoard = isP1Turn ? p2Board : p1Board;
     let currentPlayer = isP1Turn ? player1 : player2;
     let guess = await currentPlayer.getGuess();
-    console.log(guess);
     if (!isValidGuess(guess.x, guess.y))
       throw new RangeError(
         `Player ${isP1Turn ? '1' : '2'} guess is invalid. (${guess})`
       );
 
-    let isHit = currentBoard.hit(guess.x, guess.y);
+    let isHit = opponentBoard.hit(guess.x, guess.y);
+    currentPlayer.setFeedback(isHit);
     if (obj.onDraw instanceof Function) {
       obj.onDraw();
     }
-    // throw error if invalid guess
-    // p1Board.hit(guess.x, guess.y);
-    // draw();
-    // if (isWinner()) endGame();
-    // else {
-    //   isP1Turn = !isP1Turn;
-    //   nextTurn();
-    // }
+    isP1Turn = !isP1Turn;
+    nextTurn();
   };
 
   obj.start = function () {
