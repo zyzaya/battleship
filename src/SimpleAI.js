@@ -2,13 +2,14 @@ import Board from './Board';
 import ShipNames from './ShipNames';
 
 export default function SimpleAI() {
-  let guess = undefined;
+  let size = 10;
+  let remainingGuesses = [];
   let history = [];
   let ships = {};
 
   let getRandomPosition = function () {
     let min = 0;
-    let max = 10;
+    let max = size;
     return {
       x: Math.floor(Math.random() * (max - min + 1)) + min,
       y: Math.floor(Math.random() * (max - min + 1)) + min,
@@ -17,7 +18,7 @@ export default function SimpleAI() {
   };
 
   let shuffleShipPositions = function () {
-    let board = Board(10);
+    let board = Board(size);
 
     for (const name in ShipNames) {
       let pos = getRandomPosition();
@@ -34,13 +35,31 @@ export default function SimpleAI() {
   };
 
   let getGuess = function () {
-    throw new Error();
+    let i = Math.floor(Math.random() * (remainingGuesses.length + 1));
+    let guess = remainingGuesses[i];
+    guess.isHit = false;
+    history.push(guess);
+    remainingGuesses = remainingGuesses.slice(i);
+    return guess;
+  };
+
+  let setFeedback = function (isHit) {
+    history[history.length - 1].isHit = isHit;
   };
 
   let getHistory = function () {
     return [...history];
   };
 
-  shuffleShipPositions();
-  return { getGuess, getHistory, getShipPosition, shuffleShipPositions };
+  let reset = function () {
+    shuffleShipPositions();
+    for (let x = 0; x < size; x++) {
+      for (let y = 0; y < size; y++) {
+        remainingGuesses.push({ x, y });
+      }
+    }
+  };
+
+  reset();
+  return { getGuess, getHistory, getShipPosition, reset, setFeedback };
 }
