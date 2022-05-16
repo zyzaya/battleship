@@ -1,6 +1,9 @@
 export default function DisplayBoard(container, name) {
   let div = document.createElement('div');
   div.classList.add('board');
+  let imageDiv = document.createElement('div');
+  imageDiv.classList.add('grid');
+  div.appendChild(imageDiv);
 
   let displayBoard = {};
   displayBoard.onCellDrop = {};
