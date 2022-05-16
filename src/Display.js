@@ -37,14 +37,15 @@ export default function Display(battleship, player, opponent, container) {
     player.setGuess(origin.x, origin.y);
   };
 
-  let shipyard = Shipyard(container);
+  Shipyard(container, 'opponent');
+  let shipyard = Shipyard(container, 'player');
   shipyard.onShipDragStart = (e, name) => {
     let info = battleship.getShipInfo(name, true);
     let horizontal = info === undefined ? false : info.horizontal;
     e.dataTransfer.setData(
       'text',
       JSON.stringify({
-        name: e.target.id,
+        name: name,
         offsetX: e.offsetX,
         offsetY: e.offsetY,
         horizontal: horizontal,
@@ -72,9 +73,8 @@ export default function Display(battleship, player, opponent, container) {
   start.onclick = () => {
     for (const name in ShipNames) {
       let pos = opponent.getShipPosition(name);
-      console.log(`${name}: ${JSON.stringify(pos)}`);
       battleship.placeShip(name, pos.x, pos.y, pos.horizontal, false);
-      // opponentDisplay.drawShip(name, battleship.getShipInfo(name, false));
+      opponentDisplay.drawShip(name, battleship.getShipInfo(name, false));
     }
     battleship.start();
   };

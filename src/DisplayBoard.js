@@ -12,9 +12,9 @@ export default function DisplayBoard(container, name) {
     else return undefined;
   };
 
-  displayBoard.drawShip = function (name, info) {
+  displayBoard.drawShip = function (shipName, info) {
     if (info != undefined) {
-      let ship = document.getElementById(name);
+      let ship = document.getElementById(name + shipName);
       let right = info.origin.x + 3;
       let bottom = info.origin.y + 3;
       if (info.horizontal) {
