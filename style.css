@@ -31,16 +31,30 @@
   justify-content: center;
   grid-template-columns: repeat(11, 25px);
   grid-template-rows: repeat(11, 25px);
-  gap: 1px;
+  margin-right: 1px;
+  /* gap: 1px; */
+
+}
+
+.board > .grid {
+  grid-area: 2 / 2 / -1 / -1;
+  width: 251px;
+  height: 251px;
+  background-size: 25px 25px;
+  background-image:
+    linear-gradient(to right, grey 1px, transparent 1px),
+    linear-gradient(to bottom, grey 1px, transparent 1px);
 }
 
 .cell {
   text-align: center;
-  border: 1px solid black;
+  position: relative;
+  z-index: 1;
 }
 
 .labelCell {
   text-align: center;
+  background-color: white;
 }
 
 .playershipyard, .opponentshipyard {
@@ -61,14 +75,14 @@
 }
 
 .playershipyard {
-  
+  grid-area: 2 / 2 / 3 / 3;
 }
 
 .ship {
   text-align: center;
   font-size: x-small;
   border: 1px solid black;
-  /* background-color: white; */
+  background-color: white;
 }
 
 .horizontalShip {
