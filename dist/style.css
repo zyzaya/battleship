@@ -32,8 +32,6 @@
   grid-template-columns: repeat(11, 25px);
   grid-template-rows: repeat(11, 25px);
   margin-right: 1px;
-  /* gap: 1px; */
-
 }
 
 .board > .grid {

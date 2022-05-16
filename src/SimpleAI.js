@@ -39,7 +39,7 @@ export default function SimpleAI() {
     let guess = remainingGuesses[i];
     guess.isHit = false;
     history.push(guess);
-    remainingGuesses = remainingGuesses.slice(i);
+    remainingGuesses.splice(i, 1);
     return guess;
   };
 
