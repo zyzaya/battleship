@@ -88,6 +88,7 @@ export default function Display(battleship, player, opponent, container) {
         battleship.placeShip(name, pos.x, pos.y, pos.horizontal, false);
         opponentDisplay.drawShip(name, battleship.getShipInfo(name, false));
       }
+      playerDisplay.allowShipPlacement(false);
       battleship.start();
     };
     startDiv.appendChild(start);
