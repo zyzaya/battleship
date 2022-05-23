@@ -95,6 +95,12 @@ export default function Board(size) {
     };
   };
 
+  let reset = function () {
+    for (const name in ShipNames) {
+      removeShip(name);
+    }
+  };
+
   return {
     placeShip,
     removeShip,
@@ -102,5 +108,6 @@ export default function Board(size) {
     isSunk,
     getShipInfo,
     isValidShipPlacement,
+    reset,
   };
 }
