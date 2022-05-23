@@ -114,6 +114,10 @@ export default function Display(battleship, player, opponent, container) {
       opponentDisplay.reset();
       playerDisplay.reset();
       battleship.reset();
+      reset.classList.add('invisible');
+      start.classList.remove('invisible');
+      start.disabled = true;
+      info.textContent = 'Place your ships!';
     };
     container.appendChild(reset);
   };

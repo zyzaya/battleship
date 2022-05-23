@@ -61,5 +61,5 @@ export default function SimpleAI() {
   };
 
   reset();
-  return { getGuess, getHistory, getShipPosition, reset, setFeedback, reset };
+  return { getGuess, getHistory, getShipPosition, reset, setFeedback };
 }
