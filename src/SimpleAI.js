@@ -53,6 +53,7 @@ export default function SimpleAI() {
 
   let reset = function () {
     shuffleShipPositions();
+    history = [];
     for (let x = 0; x < size; x++) {
       for (let y = 0; y < size; y++) {
         remainingGuesses.push({ x, y });
