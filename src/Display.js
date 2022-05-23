@@ -113,8 +113,7 @@ export default function Display(battleship, player, opponent, container) {
       shipyard.reset();
       opponentDisplay.reset();
       playerDisplay.reset();
-      // return ships to shipyard
-      // reset battleship boards.
+      battleship.reset();
     };
     container.appendChild(reset);
   };

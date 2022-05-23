@@ -61,5 +61,14 @@ export default function Battleship(player1, player2) {
     isP1Turn = true;
     nextTurn();
   };
+
+  obj.reset = function () {
+    isP1Turn = true;
+    isP1Winner = false;
+    p1Board.reset();
+    p2Board.reset();
+    player1.reset();
+    player2.reset();
+  };
   return obj;
 }
