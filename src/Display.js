@@ -4,7 +4,9 @@ import Shipyard from './Shipyard';
 
 export default function Display(battleship, player, opponent, container) {
   let opponentDisplay = DisplayBoard(container, 'opponent');
+  opponentDisplay.allowShipPlacement(false);
   let playerDisplay = DisplayBoard(container, 'player');
+  playerDisplay.allowShipPlacement(true);
   let startDiv = document.createElement('div');
   let start = document.createElement('button');
 

@@ -15,6 +15,16 @@ export default function DisplayBoard(container, name) {
     else return undefined;
   };
 
+  displayBoard.allowShipPlacement = function (allow) {
+    for (let i = 0; i < div.children.length; i++) {
+      let cell = div.children[i];
+      if (cell.classList.contains('cell') && div.contains(cell)) {
+        if (allow) cell.classList.remove('cellForward');
+        else cell.classList.add('cellForward');
+      }
+    }
+  };
+
   displayBoard.drawShip = function (shipName, info) {
     if (info != undefined) {
       let ship = document.getElementById(name + shipName);
@@ -55,7 +65,9 @@ export default function DisplayBoard(container, name) {
         } else if (x === 0 && y > 0) {
           cell.textContent = y.toString();
           cell.classList.add('labelCell');
-        } else if (x > 0 && y > 0) cell.classList.add('cell');
+        } else if (x > 0 && y > 0) {
+          cell.classList.add('cell');
+        }
 
         cell.ondragover = (e) => e.preventDefault();
         cell.ondrop = (e) => {
