@@ -15,7 +15,9 @@ export default function Player() {
   };
 
   let setGuess = function (x, y) {
-    guess = { x: x, y: y };
+    let attempt = { x: x, y: y };
+    if (history.find((v) => v.x === attempt.x && v.y === attempt.y)) return;
+    guess = attempt;
   };
 
   let setFeedback = function (isHit) {
