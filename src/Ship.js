@@ -51,10 +51,13 @@ export default function Ship(length) {
 
   let isSunk = () => {
     if (hits.length === 0) return false;
-    return hits.every((v) => {
-      if (horizontal) return v.y === y && v.x >= x && v.x < x + length;
-      else return v.x === x && v.y >= y && v.y < y + length;
-    });
+    return (
+      hits.length === length &&
+      hits.every((v) => {
+        if (horizontal) return v.y === y && v.x >= x && v.x < x + length;
+        else return v.x === x && v.y >= y && v.y < y + length;
+      })
+    );
   };
 
   let resetHits = () => (hits.length = 0);

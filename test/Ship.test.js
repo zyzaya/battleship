@@ -91,6 +91,15 @@ it('can be sunk when vertical', () => {
   expect(ship.isSunk()).toBe(true);
 });
 
+it('is not hit when only hit once', () => {
+  let ship = Ship(4);
+  ship.setOrigin(-1, 6);
+  ship.setHorizontal(false);
+  expect(ship.isSunk()).toBe(false);
+  ship.hit(-1, 6);
+  expect(ship.isSunk()).toBe(false);
+});
+
 it('can clear hits', () => {
   let ship = Ship(3);
   ship.setOrigin(3, -5);
