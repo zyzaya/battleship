@@ -26,5 +26,10 @@ export default function Player() {
     return [...history];
   };
 
-  return { getGuess, setGuess, getHistory, setFeedback };
+  let reset = function () {
+    guess = undefined;
+    history = [];
+  };
+
+  return { getGuess, setGuess, getHistory, setFeedback, reset };
 }
