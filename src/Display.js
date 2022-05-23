@@ -123,6 +123,8 @@ export default function Display(battleship, player, opponent, container) {
   let draw = function () {
     drawShips();
     drawGuesses();
+    // update info label.
+    // if player turn "Hit!/Miss!/Ship Sunk! Guess again!"
   };
 
   let setup = function () {

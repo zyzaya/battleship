@@ -41,6 +41,10 @@ export default function Battleship(player1, player2) {
     nextTurn();
   };
 
+  obj.isP1Turn = function () {
+    return isP1Turn;
+  };
+
   obj.start = function () {
     isP1Turn = true;
     nextTurn();
