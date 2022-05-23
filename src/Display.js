@@ -123,7 +123,6 @@ export default function Display(battleship, player, opponent, container) {
   let draw = function () {
     drawShips();
     drawGuesses();
-    // update info label.
     if (!battleship.isP1Turn()) {
       let playerHistory = player.getHistory();
       let playerGuess = playerHistory[playerHistory.length - 1];
@@ -133,7 +132,6 @@ export default function Display(battleship, player, opponent, container) {
         Opponent ${opponentGuess.isHit ? 'hit' : 'missed'}!
         Guess again!`;
     }
-    // if player turn "Hit!/Miss!/Ship Sunk! Guess again!"
   };
 
   let setup = function () {
