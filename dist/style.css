@@ -31,6 +31,10 @@
   grid-area: 4 / 1 / 5 / 3;
 }
 
+.reset {
+  grid-area: 5 / 1 / 6 / 3;
+}
+
 .board {
   display: grid;
   justify-content: center;

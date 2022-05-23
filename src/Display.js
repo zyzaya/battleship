@@ -89,11 +89,11 @@ export default function Display(battleship, player, opponent, container) {
       for (const name in ShipNames) {
         let pos = opponent.getShipPosition(name);
         battleship.placeShip(name, pos.x, pos.y, pos.horizontal, false);
-        opponentDisplay.drawShip(name, battleship.getShipInfo(name, false));
       }
       playerDisplay.allowShipPlacement(false);
       battleship.start();
       start.classList.add('invisible');
+      info.textContent = 'Make your guess!';
     };
     startDiv.appendChild(start);
     container.appendChild(startDiv);
@@ -162,7 +162,6 @@ export default function Display(battleship, player, opponent, container) {
     setupShipPlacement();
     setupGuessing();
     setupShipyard();
-    Shipyard(container, 'opponent');
     setupStart();
     setupInfo();
     setupReset();
