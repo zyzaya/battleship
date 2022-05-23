@@ -8,6 +8,7 @@ export default function Display(battleship, player, opponent, container) {
   let playerDisplay = DisplayBoard(container, 'player');
   playerDisplay.allowShipPlacement(true);
   let start = document.createElement('button');
+  let info = document.createElement('div');
 
   let isAllShipsPlaced = function () {
     return Object.keys(ShipNames).every(
@@ -98,7 +99,6 @@ export default function Display(battleship, player, opponent, container) {
   };
 
   let setupInfo = function () {
-    let info = document.createElement('div');
     info.classList.add('info');
     info.textContent = 'Place your ships!';
     container.appendChild(info);
@@ -124,6 +124,15 @@ export default function Display(battleship, player, opponent, container) {
     drawShips();
     drawGuesses();
     // update info label.
+    if (!battleship.isP1Turn()) {
+      let playerHistory = player.getHistory();
+      let playerGuess = playerHistory[playerHistory.length - 1];
+      let opponentHistory = opponent.getHistory();
+      let opponentGuess = opponentHistory[opponentHistory.length - 1];
+      info.textContent = `${playerGuess.isHit ? 'Hit' : 'Miss'}!
+        Opponent ${opponentGuess.isHit ? 'hit' : 'missed'}!
+        Guess again!`;
+    }
     // if player turn "Hit!/Miss!/Ship Sunk! Guess again!"
   };
 
