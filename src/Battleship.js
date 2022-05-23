@@ -1,4 +1,5 @@
 import Board from './Board';
+import ShipNames from './ShipNames';
 
 export default function Battleship(player1, player2) {
   let obj = {};
@@ -6,7 +7,9 @@ export default function Battleship(player1, player2) {
   let p1Board = Board(size);
   let p2Board = Board(size);
   let isP1Turn = true;
+  let isP1Winner = false;
   obj.onDraw = {};
+  obj.onGameEnd = {};
 
   let isValidGuess = function (x, y) {
     return x >= 0 && x < size && y >= 0 && y < size;
@@ -38,11 +41,20 @@ export default function Battleship(player1, player2) {
       obj.onDraw();
     }
     isP1Turn = !isP1Turn;
-    nextTurn();
+    if (Object.values(ShipNames).every((name) => opponentBoard.isSunk(name))) {
+      isP1Winner = isP1Turn;
+      if (obj.onGameEnd instanceof Function) obj.onGameEnd();
+    } else {
+      nextTurn();
+    }
   };
 
   obj.isP1Turn = function () {
     return isP1Turn;
+  };
+
+  obj.isP1Winner = function () {
+    return isP1Winner;
   };
 
   obj.start = function () {
