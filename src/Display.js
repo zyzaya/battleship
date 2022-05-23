@@ -153,7 +153,7 @@ export default function Display(battleship, player, opponent, container) {
   };
 
   let endGame = function () {
-    info.textContent = `${battleship.isP1Winner ? 'Player' : 'Opponent'}
+    info.textContent = `${battleship.isP1Winner() ? 'Player' : 'Opponent'}
       wins! All ships sunk! Play again?`;
     reset.classList.remove('invisible');
   };
