@@ -26,6 +26,17 @@ export default function Shipyard(container, name) {
     ship.textContent = shipName;
     div.appendChild(ship);
   }
+
+  shipyard.reset = function () {
+    for (const shipName in ShipNames) {
+      let ship = document.getElementById(name + shipName);
+      ship.classList.remove('horizontalShip');
+      ship.classList.add('verticalShip');
+      ship.style.gridArea = shipName;
+      div.appendChild(ship);
+    }
+  };
+
   container.appendChild(div);
   return shipyard;
 }

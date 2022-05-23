@@ -11,3 +11,9 @@ let display = Display(battleship, player, opponent, container);
 battleship.onDraw = () => {
   display.draw();
 };
+battleship.onGameEnd = () => {
+  display.endGame();
+  console.log(
+    `Game Over! ${battleship.isP1Winner ? 'Player won!' : 'Computer won!'}`
+  );
+};

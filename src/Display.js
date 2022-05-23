@@ -6,9 +6,11 @@ export default function Display(battleship, player, opponent, container) {
   let opponentDisplay = DisplayBoard(container, 'opponent');
   opponentDisplay.allowShipPlacement(false);
   let playerDisplay = DisplayBoard(container, 'player');
+  let shipyard = Shipyard(container, 'player');
   playerDisplay.allowShipPlacement(true);
   let start = document.createElement('button');
   let info = document.createElement('div');
+  let reset = document.createElement('button');
 
   let isAllShipsPlaced = function () {
     return Object.keys(ShipNames).every(
@@ -50,7 +52,6 @@ export default function Display(battleship, player, opponent, container) {
   };
 
   let setupShipyard = function () {
-    let shipyard = Shipyard(container, 'player');
     shipyard.onShipDragStart = (e, name) => {
       let info = battleship.getShipInfo(name, true);
       let horizontal = info === undefined ? false : info.horizontal;
@@ -104,6 +105,18 @@ export default function Display(battleship, player, opponent, container) {
     container.appendChild(info);
   };
 
+  let setupReset = function () {
+    reset.classList.add('reset');
+    reset.classList.add('invisible');
+    reset.textContent = 'Play Again';
+    reset.onclick = () => {
+      shipyard.reset();
+      // return ships to shipyard
+      // reset battleship boards.
+    };
+    container.appendChild(reset);
+  };
+
   let drawShips = function () {
     for (const name in ShipNames) {
       playerDisplay.drawShip(name, battleship.getShipInfo(name, true));
@@ -134,6 +147,12 @@ export default function Display(battleship, player, opponent, container) {
     }
   };
 
+  let endGame = function () {
+    info.textContent = `${battleship.isP1Winner ? 'Player' : 'Opponent'}
+      wins! All ships sunk! Play again?`;
+    reset.classList.remove('invisible');
+  };
+
   let setup = function () {
     setupShipPlacement();
     setupGuessing();
@@ -141,8 +160,9 @@ export default function Display(battleship, player, opponent, container) {
     Shipyard(container, 'opponent');
     setupStart();
     setupInfo();
+    setupReset();
   };
 
   setup();
-  return { draw };
+  return { draw, endGame };
 }
