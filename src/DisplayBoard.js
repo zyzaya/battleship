@@ -53,6 +53,16 @@ export default function DisplayBoard(container, name) {
     cell.textContent = isHit ? 'X' : '0';
   };
 
+  displayBoard.reset = function () {
+    for (let i = 0; i < div.children.length; i++) {
+      let cell = div.children[i];
+      if (cell.classList.contains('cell') && div.contains(cell)) {
+        cell.textContent = '';
+        cell.classList.remove('cellForward');
+      }
+    }
+  };
+
   let setupCells = function () {
     for (let y = 0; y < 11; y++) {
       for (let x = 0; x < 11; x++) {

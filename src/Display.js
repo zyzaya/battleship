@@ -111,6 +111,8 @@ export default function Display(battleship, player, opponent, container) {
     reset.textContent = 'Play Again';
     reset.onclick = () => {
       shipyard.reset();
+      opponentDisplay.reset();
+      playerDisplay.reset();
       // return ships to shipyard
       // reset battleship boards.
     };
