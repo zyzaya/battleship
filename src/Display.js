@@ -7,7 +7,6 @@ export default function Display(battleship, player, opponent, container) {
   opponentDisplay.allowShipPlacement(false);
   let playerDisplay = DisplayBoard(container, 'player');
   playerDisplay.allowShipPlacement(true);
-  let startDiv = document.createElement('div');
   let start = document.createElement('button');
 
   let isAllShipsPlaced = function () {
@@ -79,6 +78,8 @@ export default function Display(battleship, player, opponent, container) {
   };
 
   let setupStart = function () {
+    let startDiv = document.createElement('div');
+    startDiv.classList.add('startDiv');
     start.classList.add('start');
     start.disabled = true;
     start.textContent = 'Start Game';
@@ -90,9 +91,17 @@ export default function Display(battleship, player, opponent, container) {
       }
       playerDisplay.allowShipPlacement(false);
       battleship.start();
+      start.classList.add('invisible');
     };
     startDiv.appendChild(start);
     container.appendChild(startDiv);
+  };
+
+  let setupInfo = function () {
+    let info = document.createElement('div');
+    info.classList.add('info');
+    info.textContent = 'Place your ships!';
+    container.appendChild(info);
   };
 
   let drawShips = function () {
@@ -122,6 +131,7 @@ export default function Display(battleship, player, opponent, container) {
     setupShipyard();
     Shipyard(container, 'opponent');
     setupStart();
+    setupInfo();
   };
 
   setup();
