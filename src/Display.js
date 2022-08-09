@@ -21,24 +21,29 @@ export default function Display(battleship, player, opponent, container) {
   let setupShipPlacement = function () {
     playerDisplay.onCellDrop = (e) => {
       e.preventDefault();
-      let info = JSON.parse(e.dataTransfer.getData('text'));
-      let origin = playerDisplay.cellFromPoint(
-        e.x - e.offsetX - info.offsetX + 25,
-        e.y - e.offsetY - info.offsetY + 25
-      );
-      if (origin !== undefined)
-        battleship.placeShip(
-          info.name,
-          origin.x,
-          origin.y,
-          info.horizontal,
-          true
+      let regex =
+        /{"name":"(\w+)","offsetX":(-?\d+),"offsetY":(-?\d+),"horizontal":(true|false)}/g;
+      let data = e.dataTransfer.getData('text');
+      if (data.match(regex) !== null) {
+        let info = JSON.parse(e.dataTransfer.getData('text'));
+        let origin = playerDisplay.cellFromPoint(
+          e.x - e.offsetX - info.offsetX + 25,
+          e.y - e.offsetY - info.offsetY + 25
         );
-      playerDisplay.drawShip(
-        info.name,
-        battleship.getShipInfo(info.name, true)
-      );
-      if (isAllShipsPlaced()) start.disabled = false;
+        if (origin !== undefined)
+          battleship.placeShip(
+            info.name,
+            origin.x,
+            origin.y,
+            info.horizontal,
+            true
+          );
+        playerDisplay.drawShip(
+          info.name,
+          battleship.getShipInfo(info.name, true)
+        );
+        if (isAllShipsPlaced()) start.disabled = false;
+      }
     };
   };
   let setupGuessing = function () {
