@@ -42,7 +42,7 @@ export default function Battleship(player1, player2) {
     }
     isP1Turn = !isP1Turn;
     if (Object.values(ShipNames).every((name) => opponentBoard.isSunk(name))) {
-      isP1Winner = isP1Turn;
+      isP1Winner = !isP1Turn;
       if (obj.onGameEnd instanceof Function) obj.onGameEnd();
     } else {
       nextTurn();
